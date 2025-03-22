@@ -5,12 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http'; // Importar HttpClientModule
 // Importa el módulo de Angular Material
-import { MaterialModule } from './material.module';  // Asegúrate de importar el archivo correcto
+import { MaterialModule } from './material.module';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { HomeComponent } from './components/main/home/home.component';
+import { UserLoginComponent } from './components/user/user-login/user-login.component';  // Asegúrate de importar el archivo correcto
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UserListComponent,
+    HomeComponent,
+    UserLoginComponent
   ],
   imports: [
     BrowserModule,

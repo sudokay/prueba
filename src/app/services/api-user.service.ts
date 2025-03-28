@@ -11,8 +11,23 @@ export class ApiUserService {
 
   constructor(private http: HttpClient) { }
 
-  // Método para obtener datos de la API
-  getUsers(): Observable<any> {
-    return this.http.get(this.apiUrl);  // Realizamos una solicitud GET a la API
+  // Método para obtener todos los usuarios
+  getUsers(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
   }
+
+  // Método para eliminar un usuario
+  deleteUser(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+    // Actualizar un usuario
+    updateUser(user: any): Observable<any> {
+      return this.http.patch<any>(`${this.apiUrl}/${user.id}`, user);
+    }
+
+    // Actualizar un usuario
+    createUser(user: any): Observable<any> {
+      return this.http.post<any>(this.apiUrl,user);
+    }
 }

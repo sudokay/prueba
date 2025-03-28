@@ -1,33 +1,72 @@
-<div *ngIf="dataSource.length > 0; else noData">
-    <h2>Lista de Usuarios</h2>
-  
-    <!-- Mat Table -->
-    <table mat-table [dataSource]="dataSource">
-  
-      <!-- Definición de columnas -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Nombre </th>
-        <td mat-cell *matCellDef="let user"> {{ user.name }} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> Correo </th>
-        <td mat-cell *matCellDef="let user"> {{ user.email }} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="age">
-        <th mat-header-cell *matHeaderCellDef> Edad </th>
-        <td mat-cell *matCellDef="let user"> {{ user.age }} </td>
-      </ng-container>
-  
-      <!-- Fila de la cabecera -->
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <!-- Fila de los datos -->
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+<div class="container mt-4">
+  <h2>Usuarios Registrados</h2>
+  <table class="table table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th>ID</th>
+        <th>name</th>
+        <th>Nickname</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Rol</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.nickname }}</td>
+        <td>{{ user.age }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.rol }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm" (click)="editUser(user)">Editar</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteUser(user.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal de edición de usuario -->
+<div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editUserModalLabel">Editar Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #editForm="ngForm" (ngSubmit)="saveUser()">
+          <div class="mb-3">
+            <label for="nickname" class="form-label">Nickname</label>
+            <input type="text" class="form-control" id="nickname" [(ngModel)]="selectedUser.nickname" name="nickname"
+              required>
+          </div>
+          <div class="mb-3">
+            <label for="age" class="form-label">Edad</label>
+            <input type="number" class="form-control" id="age" [(ngModel)]="selectedUser.age" name="age" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" [(ngModel)]="selectedUser.email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" [(ngModel)]="selectedUser.name" name="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="rol" class="form-label">Rol</label>
+            <select class="form-select" aria-label="Default select example" id="rol" [(ngModel)]="selectedUser.rol" name="rol" required >
+              <option selected>Open this select menu</option>
+              <option value="Admin">Admin</option>
+              <option value="User">User</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+      </div>
+    </div>
   </div>
-  
-  <!-- Si no hay datos, muestra un mensaje -->
-  <ng-template #noData>
-    <p>No hay usuarios disponibles.</p>
-  </ng-template>
+</div>

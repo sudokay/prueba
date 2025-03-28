@@ -12,6 +12,8 @@ import { HomeComponent } from './components/main/home/home.component';
 import { UserLoginComponent } from './components/user/user-login/user-login.component';  // Asegúrate de importar el archivo correcto
 import { FormsModule } from '@angular/forms';
 import { AdminDashComponent } from './components/user/admin-dash/admin-dash.component';
+import { UserCreateComponent } from './components/user/user-create/user-create.component';
+
 
 
 @NgModule({
@@ -21,6 +23,7 @@ import { AdminDashComponent } from './components/user/admin-dash/admin-dash.comp
     HomeComponent,
     UserLoginComponent,
     AdminDashComponent,
+    UserCreateComponent,
     
   ],
   imports: [

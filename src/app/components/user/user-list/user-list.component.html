@@ -1,5 +1,27 @@
 <div class="container mt-4">
-  <h2>Usuarios Registrados</h2>
+  <h2 class="my-5">Usuarios Registrados</h2>
+  <div class="filters mb-3">
+    <div class="row">
+
+      <!-- Filtros -->
+
+      <!-- Filtro por Nickname -->
+      <div class="col-6">
+        <input type="text" class="form-control" placeholder="Filtrar por Nickname" [(ngModel)]="nicknameFilter"
+          (input)="applyFilters()">
+      </div>
+      <div class="col-6">
+        <!-- Filtro por Rol -->
+        <select class="form-control" [(ngModel)]="rolFilter" (change)="applyFilters()">
+          <option value="">Seleccionar Rol</option>
+          <option value="admin">Admin</option>
+          <option value="user">Usuario</option>
+          <option value="moderator">Moderador</option>
+          <!-- Puedes agregar más opciones según tus roles -->
+        </select>
+      </div>
+    </div>
+  </div>
   <table class="table table-hover">
     <thead class="thead-light">
       <tr>
@@ -13,7 +35,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of users">
+      <tr *ngFor="let user of filteredUsers">
         <td>{{ user.id }}</td>
         <td>{{ user.name }}</td>
         <td>{{ user.nickname }}</td>
@@ -21,7 +43,7 @@
         <td>{{ user.email }}</td>
         <td>{{ user.rol }}</td>
         <td>
-          <button class="btn btn-warning btn-sm" (click)="editUser(user)">Editar</button>
+          <button class="btn btn-warning btn-sm mx-2" (click)="editUser(user)">Editar</button>
           <button class="btn btn-danger btn-sm" (click)="deleteUser(user.id)">Eliminar</button>
         </td>
       </tr>
@@ -45,6 +67,11 @@
               required>
           </div>
           <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="nickname" [(ngModel)]="selectedUser.password" name="password"
+              required>
+          </div>
+          <div class="mb-3">
             <label for="age" class="form-label">Edad</label>
             <input type="number" class="form-control" id="age" [(ngModel)]="selectedUser.age" name="age" required>
           </div>
@@ -58,7 +85,8 @@
           </div>
           <div class="mb-3">
             <label for="rol" class="form-label">Rol</label>
-            <select class="form-select" aria-label="Default select example" id="rol" [(ngModel)]="selectedUser.rol" name="rol" required >
+            <select class="form-select" aria-label="Default select example" id="rol" [(ngModel)]="selectedUser.rol"
+              name="rol" required>
               <option selected>Open this select menu</option>
               <option value="Admin">Admin</option>
               <option value="User">User</option>

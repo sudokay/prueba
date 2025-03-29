@@ -14,6 +14,10 @@ export class UserListComponent implements OnInit {
   users: any[] = [];  // Aquí almacenamos los usuarios
   selectedUser: any = {};
 
+  filteredUsers: any[] = []; // Usuarios filtrados
+  nicknameFilter: string = ''; // Filtro por nickname
+  rolFilter: string = ''; // Filtro por rol
+
   constructor(private apiUserService: ApiUserService) { }
 
   ngOnInit(): void {
@@ -25,12 +29,22 @@ export class UserListComponent implements OnInit {
     this.apiUserService.getUsers().subscribe(
       (data) => {
         this.users = data;
+        this.filteredUsers = data; // Inicializa la lista filtrada con todos los usuarios
       },
       (error) => {
         console.error('Error al obtener usuarios', error);
       }
     );
   }
+
+    // Aplicar los filtros
+    applyFilters(): void {
+      this.filteredUsers = this.users.filter(user => {
+        const matchesNickname = user.nickname.toLowerCase().includes(this.nicknameFilter.toLowerCase());
+        const matchesRole = this.rolFilter ? user.rol.toLowerCase() === this.rolFilter.toLowerCase() : true;
+        return matchesNickname && matchesRole;
+      });
+    }
 
   // Método para abrir el modal y preparar el usuario para edición
   editUser(user: any): void {

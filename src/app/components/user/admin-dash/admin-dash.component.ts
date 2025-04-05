@@ -14,13 +14,22 @@ export class AdminDashComponent{
 
   userCreate:boolean = false;
   userList:boolean = false;
+  
+  productList:boolean = false;
 
   showUserCreate() {
     this.userCreate = true;  // Alterna la visibilidad
     this.userList = false;
+    this.productList = false;
   }
   showUserList() {
     this.userList = true;
     this.userCreate = false;  // Alterna la visibilidad
+    this.productList = false;
+  }
+  showProductList() {
+    this.userList = false;
+    this.userCreate = false;
+    this.productList = true;  // Alterna la visibilidad
   }
 }

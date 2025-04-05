@@ -13,6 +13,7 @@ import { UserLoginComponent } from './components/user/user-login/user-login.comp
 import { FormsModule } from '@angular/forms';
 import { AdminDashComponent } from './components/user/admin-dash/admin-dash.component';
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
+import { ProductListComponent } from './components/product/product-list/product-list.component';
 
 
 
@@ -24,6 +25,7 @@ import { UserCreateComponent } from './components/user/user-create/user-create.c
     UserLoginComponent,
     AdminDashComponent,
     UserCreateComponent,
+    ProductListComponent,
     
   ],
   imports: [

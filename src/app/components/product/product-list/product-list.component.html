@@ -1,0 +1,99 @@
+<div class="container mt-4">
+    <h2 class="my-5">Productos registrados</h2>
+    <div class="filters mb-3">
+        <div class="row">
+
+            <!-- Filtros -->
+
+            <!-- Filtro por Nickname -->
+            <div class="col-6">
+                <input type="text" class="form-control" placeholder="Filtrar por Nickname" [(ngModel)]="nicknameFilter"
+                    (input)="applyFilters()">
+            </div>
+            <div class="col-6">
+                <!-- Filtro por Rol -->
+                <select class="form-control" [(ngModel)]="rolFilter" (change)="applyFilters()">
+                    <option value="">Seleccionar Rol</option>
+                    <option value="admin">Admin</option>
+                    <option value="user">Usuario</option>
+                    <option value="moderator">Moderador</option>
+                    <!-- Puedes agregar más opciones según tus roles -->
+                </select>
+            </div>
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Img</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of filteredProducts">
+                <td>{{ product.productId }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price | currency }}</td>
+                <td>{{ product.stock }}</td>
+
+                <td>
+                    <img *ngIf="product.image" [src]="'data:image/jpeg;base64,' + product.image"
+                        alt="Imagen del producto" style="width: 100px; height: 100px;" />
+                </td>
+                <td>
+                    <button class="btn btn-warning btn-sm mx-2" (click)="editProduct(product)">Editar</button>
+                    <button class="btn btn-danger btn-sm" (click)="deleteProduct(product.productId)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal de edición de usuario -->
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editUserModalLabel">Editar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form #editForm="ngForm" (ngSubmit)="saveProduct()">
+                    <div class="mb-3">
+                        <label for="nickname" class="form-label">Nickname</label>
+                        <input type="text" class="form-control" id="nickname" [(ngModel)]="selectedProduct.name"
+                            name="nickname" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password"
+                            [(ngModel)]="selectedProduct.description" name="password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="age" class="form-label">Edad</label>
+                        <input type="number" class="form-control" id="age" [(ngModel)]="selectedProduct.price"
+                            name="age" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" [(ngModel)]="selectedProduct.stock"
+                            name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="image">Imagen</label>
+                            <input type="file" id="image" (change)="onImageSelected($event)" class="form-control">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

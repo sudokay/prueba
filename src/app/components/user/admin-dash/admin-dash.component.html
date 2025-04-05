@@ -218,6 +218,19 @@
                         href="javascript:void(0);" (click)="showUserList()">Gestionar</a></li>
                   </ul>
                 </div>
+              
+                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed ps-5"
+                  data-bs-toggle="collapse" data-bs-target="#orders-collapse3" aria-expanded="false">
+                  Products
+                </button>
+                <div class="collapse" id="orders-collapse3">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded "
+                        href="javascript:void(0);" (click)="showUserCreate()">Crear</a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                        href="javascript:void(0);" (click)="showProductList()">Gestionar</a></li>
+                  </ul>
+                </div>
               </div>
             </li>
             <li class="border-top my-3"></li>
@@ -254,6 +267,7 @@
 
       <app-user-create *ngIf="userCreate"></app-user-create>
       <app-user-list *ngIf="userList"></app-user-list>
+      <app-product-list *ngIf="productList"></app-product-list>
 
       <!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Dashboard</h1>

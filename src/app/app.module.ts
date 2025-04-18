@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { AdminDashComponent } from './components/user/admin-dash/admin-dash.component';
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
 import { ProductListComponent } from './components/product/product-list/product-list.component';
+import { UserRegisterComponent } from './components/user/user-register/user-register.component';
 
 
 
@@ -26,6 +27,7 @@ import { ProductListComponent } from './components/product/product-list/product-
     AdminDashComponent,
     UserCreateComponent,
     ProductListComponent,
+    UserRegisterComponent,
     
   ],
   imports: [

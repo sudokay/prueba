@@ -4,12 +4,14 @@ import { UserLoginComponent} from './components/user/user-login/user-login.compo
 import { HomeComponent } from './components/main/home/home.component';
 import { AdminDashComponent } from './components/user/admin-dash/admin-dash.component';
 import { UserListComponent } from './components/user/user-list/user-list.component';
+import { UserRegisterComponent } from './components/user/user-register/user-register.component';
 
 const routes: Routes = [
   { path: 'userLoginComponent', component: UserLoginComponent },
   { path: 'HomeComponent', component: HomeComponent },
   { path: 'AdminDashComponent', component: AdminDashComponent },
   { path: 'UserListComponent', component: UserListComponent },
+  { path: 'userRegisterComponent', component: UserRegisterComponent },
   { path: '', redirectTo: '/HomeComponent', pathMatch: 'full' }
 
 ];

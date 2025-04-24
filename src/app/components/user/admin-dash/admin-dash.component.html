@@ -226,7 +226,7 @@
                 <div class="collapse" id="orders-collapse3">
                   <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ps-5 small">
                     <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded "
-                        href="javascript:void(0);" (click)="showUserCreate()">Crear</a></li>
+                        href="javascript:void(0);" (click)="showProductCreate()">Crear</a></li>
                     <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                         href="javascript:void(0);" (click)="showProductList()">Gestionar</a></li>
                   </ul>
@@ -268,6 +268,7 @@
       <app-user-create *ngIf="userCreate"></app-user-create>
       <app-user-list *ngIf="userList"></app-user-list>
       <app-product-list *ngIf="productList"></app-product-list>
+      <app-product-create *ngIf="productCreate"></app-product-create>
 
       <!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Dashboard</h1>

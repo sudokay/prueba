@@ -16,20 +16,31 @@ export class AdminDashComponent{
   userList:boolean = false;
   
   productList:boolean = false;
+  productCreate:boolean = false;
+
+  hideAllPages(){
+    this.userCreate = false;  // Alterna la visibilidad
+    this.userList = false;
+    this.productList = false;
+    this.productCreate = false;
+  }
 
   showUserCreate() {
-    this.userCreate = true;  // Alterna la visibilidad
-    this.userList = false;
-    this.productList = false;
+    this.hideAllPages()
+    this.userCreate = true;
   }
   showUserList() {
+    this.hideAllPages()
     this.userList = true;
-    this.userCreate = false;  // Alterna la visibilidad
-    this.productList = false;
   }
+  
   showProductList() {
-    this.userList = false;
-    this.userCreate = false;
-    this.productList = true;  // Alterna la visibilidad
+    this.hideAllPages()
+    this.productList = true;
+  }
+  showProductCreate(){
+    this.hideAllPages()
+    this.productCreate = true;
+
   }
 }

@@ -15,6 +15,7 @@ import { AdminDashComponent } from './components/user/admin-dash/admin-dash.comp
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
 import { ProductListComponent } from './components/product/product-list/product-list.component';
 import { UserRegisterComponent } from './components/user/user-register/user-register.component';
+import { ProductCreateComponent } from './components/product/product-create/product-create.component';
 
 
 
@@ -28,6 +29,7 @@ import { UserRegisterComponent } from './components/user/user-register/user-regi
     UserCreateComponent,
     ProductListComponent,
     UserRegisterComponent,
+    ProductCreateComponent,
     
   ],
   imports: [

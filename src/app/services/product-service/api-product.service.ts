@@ -11,6 +11,17 @@ export class ApiProductService {
 
   constructor(private http: HttpClient) { }
 
+  createProduct(product: any, image: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('name', product.name);
+    formData.append('description', product.description);
+    formData.append('price', product.price);
+    formData.append('stock', product.price);
+    formData.append('image', image);
+
+    return this.http.post(this.apiUrl, formData);
+  }
+
   // Obtener todos los productos
   getProducts(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}`);

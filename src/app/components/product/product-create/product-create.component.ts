@@ -11,28 +11,47 @@ import Swal from 'sweetalert2';
 export class ProductCreateComponent {
   product: any = {};
   selectedImage: File | null = null;
+
+
   constructor(private apiProductService: ApiProductService) { }
+
+
+
   saveProduct(): void {
-    if (this.selectedImage) {
-      this.apiProductService.createProduct(this.product, this.selectedImage).subscribe(
-        () => {
-          Swal.fire(
-            'Éxito!',
-            'Usuario editado correctamente.',
-            'success'
-          );
-        },
-        (error) => {
-          console.error('Error al guardar los cambios del usuario', error);
-          Swal.fire(
-            'Error!',
-            'Hubo un problema al guardar los cambios.',
-            'error'
-          );
-        }
-      );
+
+    if (
+      this.product.name &&
+      this.product.description &&
+      this.product.price !== null &&
+      this.product.price > 0 &&
+      this.product.stock !== null &&
+      this.product.stock >= 0
+    ) {
+      if (this.selectedImage) {
+        this.apiProductService.createProduct(this.product, this.selectedImage).subscribe(
+          () => {
+            Swal.fire(
+              'Éxito!',
+              'Usuario editado correctamente.',
+              'success'
+            );
+          },
+          (error) => {
+            console.error('Error al guardar los cambios del usuario', error);
+            Swal.fire(
+              'Error!',
+              'Hubo un problema al guardar los cambios.',
+              'error'
+            );
+          }
+        );
+      }else {
+        console.log('Formulario inválido. Revisa los campos.');
+      }
     }
   }
+
+
   onImageSelected(event: any) {
     this.selectedImage = event.target.files[0];
   }

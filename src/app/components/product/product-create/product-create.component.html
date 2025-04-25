@@ -1,32 +1,69 @@
 <div class="container-fluid mt-4">
     <h2>Crear producto</h2>
-    <form class="row g-3" (ngSubmit)="saveProduct()">
-      <div class="col-md-4">
-        <label for="name" class="form-label" >Name</label>
-        <input type="text" class="form-control" id="name" value="Mark" [(ngModel)]="product.name" required name="name">
-      </div>
-      <div class="col-md-2">
-        <label for="age" class="form-label">Description</label>
-        <input type="text" class="form-control" id="age" value="Otto" [(ngModel)]="product.description" required name="description">
-      </div>
-      <div class="col-md-6">
-        <label for="email" class="form-label">price</label>
-        <div class="input-group">
-          <span class="input-group-text" id="inputGroupPrepend2"></span>
-          <input type="number" class="form-control" id="email" aria-describedby="inputGroupPrepend2" [(ngModel)]="product.price" required name="price">
+    <form class="row g-3" (ngSubmit)="saveProduct()" #productForm="ngForm" novalidate>
+
+        <!-- nombre -->
+        <div class="col-md-4">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="product.name" required
+                #name="ngModel" [class.is-invalid]="name.invalid && name.touched"
+                [class.is-valid]="name.valid && name.touched">
+            <div class="invalid-feedback">
+                El nombre es obligatorio.
+            </div>
         </div>
-      </div>
-      <div class="col-md-6">
-        <label for="stockk" class="form-label">stockk</label>
-        <input type="number" class="form-control" id="nickname" [(ngModel)]="product.stock" required name="stock">
-      </div>
-      <div class="col-md-4">
-        <label for="formFile" class="form-label">imagen</label>
-        <input class="form-control" type="file" id="formFile" (change)="onImageSelected($event)">
-      </div>
-      <div class="col-12">
-        <button class="btn btn-primary" type="submit">Submit form</button>
-      </div>
+
+
+        <!-- description -->
+        <div class="col-md-2">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" class="form-control" id="description" name="description"
+                [(ngModel)]="product.description" required #description="ngModel"
+                [class.is-invalid]="description.invalid && description.touched"
+                [class.is-valid]="description.valid && description.touched">
+            <div class="invalid-feedback">
+                La descripción es obligatoria.
+            </div>
+        </div>
+
+
+        <!-- price -->
+        <div class="col-md-6">
+            <label for="price" class="form-label">Price</label>
+            <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" id="price" name="price" [(ngModel)]="product.price" required
+                    min="0.01" #price="ngModel" [class.is-invalid]="price.invalid && price.touched"
+                    [class.is-valid]="price.valid && price.touched">
+                <div class="invalid-feedback">
+                    El precio debe ser mayor que 0.
+                </div>
+            </div>
+        </div>
+
+
+        <!-- stock -->
+        <div class="col-md-6">
+            <label for="stock" class="form-label">Stock</label>
+            <input type="number" class="form-control" id="stock" name="stock" [(ngModel)]="product.stock" required
+                min="0" #stock="ngModel" [class.is-invalid]="stock.invalid && stock.touched"
+                [class.is-valid]="stock.valid && stock.touched">
+            <div class="invalid-feedback">
+                El stock es obligatorio y no puede ser negativo.
+            </div>
+        </div>
+
+
+        <!-- image -->
+        <div class="col-md-4">
+            <label for="formFile" class="form-label">imagen</label>
+            <input class="form-control" type="file" id="formFile" (change)="onImageSelected($event)">
+        </div>
+
+        <!-- buttonsubmit -->
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit" [disabled]="productForm.invalid">Submit form</button>
+        </div>
     </form>
-  
-  </div>
+
+</div>

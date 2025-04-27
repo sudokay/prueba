@@ -1,69 +1,104 @@
-<div class="container-fluid mt-4">
+
+<div class="container-fluid mt-4 ">
     <h2>Crear producto</h2>
-    <form class="row g-3" (ngSubmit)="saveProduct()" #productForm="ngForm" novalidate>
+    <div class="columnas">
+        <form class="row g-3" (ngSubmit)="saveProduct()" #productForm="ngForm" novalidate>
 
-        <!-- nombre -->
-        <div class="col-md-4">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="product.name" required
-                #name="ngModel" [class.is-invalid]="name.invalid && name.touched"
-                [class.is-valid]="name.valid && name.touched">
-            <div class="invalid-feedback">
-                El nombre es obligatorio.
-            </div>
-        </div>
-
-
-        <!-- description -->
-        <div class="col-md-2">
-            <label for="description" class="form-label">Description</label>
-            <input type="text" class="form-control" id="description" name="description"
-                [(ngModel)]="product.description" required #description="ngModel"
-                [class.is-invalid]="description.invalid && description.touched"
-                [class.is-valid]="description.valid && description.touched">
-            <div class="invalid-feedback">
-                La descripción es obligatoria.
-            </div>
-        </div>
-
-
-        <!-- price -->
-        <div class="col-md-6">
-            <label for="price" class="form-label">Price</label>
-            <div class="input-group">
-                <span class="input-group-text">$</span>
-                <input type="number" class="form-control" id="price" name="price" [(ngModel)]="product.price" required
-                    min="0.01" #price="ngModel" [class.is-invalid]="price.invalid && price.touched"
-                    [class.is-valid]="price.valid && price.touched">
+            <!-- nombre -->
+            <div class="col-md-6">
+                <label for="name" class="form-label">Nombre del producto</label>
+                <input type="text" class="form-control" id="name" name="name" [(ngModel)]="product.name" required
+                    #name="ngModel" [class.is-invalid]="name.invalid && name.touched"
+                    [class.is-valid]="name.valid && name.touched">
                 <div class="invalid-feedback">
-                    El precio debe ser mayor que 0.
+                    El nombre es obligatorio.
                 </div>
             </div>
-        </div>
-
-
-        <!-- stock -->
-        <div class="col-md-6">
-            <label for="stock" class="form-label">Stock</label>
-            <input type="number" class="form-control" id="stock" name="stock" [(ngModel)]="product.stock" required
-                min="0" #stock="ngModel" [class.is-invalid]="stock.invalid && stock.touched"
-                [class.is-valid]="stock.valid && stock.touched">
-            <div class="invalid-feedback">
-                El stock es obligatorio y no puede ser negativo.
+            
+            <!-- categoria -->
+            <div class="col-md-6">
+                <label for="name" class="form-label">Categoria</label>
+                <input type="text" class="form-control" id="categoria" name="categoria" [(ngModel)]="product.name" required
+                    #name="ngModel" [class.is-invalid]="name.invalid && name.touched"
+                    [class.is-valid]="name.valid && name.touched">
+                <div class="invalid-feedback">
+                    Describa la categoria.
+                </div>
             </div>
-        </div>
 
 
-        <!-- image -->
-        <div class="col-md-4">
-            <label for="formFile" class="form-label">imagen</label>
-            <input class="form-control" type="file" id="formFile" (change)="onImageSelected($event)">
-        </div>
+            <!-- description -->
+            <div class="col-md-6">
+                <label for="description" class="form-label">Descripcion</label>
+                <input type="text" class="form-control" id="description" name="description"
+                    [(ngModel)]="product.description" required #description="ngModel"
+                    [class.is-invalid]="description.invalid && description.touched"
+                    [class.is-valid]="description.valid && description.touched">
+                <div class="invalid-feedback">
+                    La descripción es obligatoria.
+                </div>
+            </div>
 
-        <!-- buttonsubmit -->
-        <div class="col-12">
-            <button class="btn btn-primary" type="submit" [disabled]="productForm.invalid">Submit form</button>
-        </div>
-    </form>
+            <!-- Marca-->
+            <div class="col-md-6">
+                <label for="marca" class="form-label">Marca del producto</label>
+                <input type="text" class="form-control" id="Marca" name="marca" [(ngModel)]="product.marca" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched"
+                    [class.is-valid]="name.valid && name.touched">
+                <div class="invalid-feedback">
+                  Selecciona la marca del producto.
+                </div>
+            </div>
 
+            <!-- price -->
+            <div class="col-md-6">
+                <label for="price" class="form-label">Precio</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" class="form-control" id="price" name="price" [(ngModel)]="product.price"
+                        required min="0.01" #price="ngModel" [class.is-invalid]="price.invalid && price.touched"
+                        [class.is-valid]="price.valid && price.touched">
+                    <div class="invalid-feedback">
+                        El precio debe ser mayor que 0.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Codigo -->
+            <div class="col-md-6">
+                <label for="codigo" class="form-label">Codigo de producto</label>
+                <input type="number" class="form-control" id="codigo" name="codigo" [(ngModel)]="product.codigo" required
+                min="0" 
+                    #codigo="ngModel" [class.is-invalid]="codigo.invalid && codigo.touched"
+                    [class.is-valid]="codigo.valid && codigo.touched">
+                <div class="invalid-feedback">
+                    El codigo es obligatorio.
+                </div>
+            </div>
+
+            <!-- stock -->
+            <div class="col-md-6">
+                <label for="stock" class="form-label">Stock de producto</label>
+                <input type="number" class="form-control" id="stock" name="stock" [(ngModel)]="product.stock" required
+                    min="1" #stock="ngModel" [class.is-invalid]="stock.invalid && stock.touched"
+                    [class.is-valid]="stock.valid && stock.touched">
+                <div class="invalid-feedback">
+                    El stock es obligatorio y no puede ser negativo.
+                </div>
+            </div>
+
+          
+
+            <!-- image -->
+            <div class="col-md-4">
+                <label for="formFile" class="form-label">Imagen</label>
+                <input class="form-control" type="file" id="formFile" (change)="onImageSelected($event)">
+            </div>
+
+
+            <!-- buttonsubmit -->
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit" [disabled]="productForm.invalid">Subir producto</button>
+            </div>
+        </form>
+    </div>
 </div>

@@ -63,18 +63,6 @@
                 </div>
             </div>
 
-            <!-- Codigo -->
-            <div class="col-md-6">
-                <label for="codigo" class="form-label">Codigo de producto</label>
-                <input type="number" class="form-control" id="codigo" name="codigo" [(ngModel)]="product.codigo" required
-                min="0" 
-                    #codigo="ngModel" [class.is-invalid]="codigo.invalid && codigo.touched"
-                    [class.is-valid]="codigo.valid && codigo.touched">
-                <div class="invalid-feedback">
-                    El codigo es obligatorio.
-                </div>
-            </div>
-
             <!-- stock -->
             <div class="col-md-6">
                 <label for="stock" class="form-label">Stock de producto</label>

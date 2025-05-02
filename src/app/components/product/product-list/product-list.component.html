@@ -5,20 +5,15 @@
 
             <!-- Filtros -->
 
-            <!-- Filtro por Nickname -->
+            <!-- Filtro por id -->
             <div class="col-6">
-                <input type="text" class="form-control" placeholder="Filtrar por Nickname" [(ngModel)]="nicknameFilter"
+                <input type="text" class="form-control" placeholder="Filtrar por id" [(ngModel)]="productIdFilter"
                     (input)="applyFilters()">
             </div>
             <div class="col-6">
-                <!-- Filtro por Rol -->
-                <select class="form-control" [(ngModel)]="rolFilter" (change)="applyFilters()">
-                    <option value="">Seleccionar Rol</option>
-                    <option value="admin">Admin</option>
-                    <option value="user">Usuario</option>
-                    <option value="moderator">Moderador</option>
-                    <!-- Puedes agregar más opciones según tus roles -->
-                </select>
+                <!-- Filtro por name -->
+                <input type="text" class="form-control" placeholder="name" [(ngModel)]="nameFilter"
+                (input)="applyFilters()">
             </div>
         </div>
     </div>

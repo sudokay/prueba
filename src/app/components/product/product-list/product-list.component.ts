@@ -14,8 +14,8 @@ export class ProductListComponent {
   selectedImage: File | null = null;
 
   filteredProducts: any[] = []; // Usuarios filtrados
-  nicknameFilter: string = ''; // Filtro por nickname
-  rolFilter: string = ''; // Filtro por rol
+  productIdFilter: number = 0; // Filtro por nickname
+  nameFilter: string = ''; // Filtro por rol
   base64Image: string | null = null;
 
   constructor(private apiProductService: ApiProductService) { }
@@ -39,10 +39,10 @@ export class ProductListComponent {
 
   // Aplicar los filtros
   applyFilters(): void {
-    this.filteredProducts = this.product.filter(user => {
-      const matchesNickname = user.nickname.toLowerCase().includes(this.nicknameFilter.toLowerCase());
-      const matchesRole = this.rolFilter ? user.rol.toLowerCase() === this.rolFilter.toLowerCase() : true;
-      return matchesNickname && matchesRole;
+    this.filteredProducts = this.product.filter(product => {
+      const matchesProductId = product.productId.toString().includes(this.productIdFilter.toString());
+      const matchesName = product.name.toString().includes(this.nameFilter.toString());
+      return matchesProductId && matchesName;
     });
   }
 

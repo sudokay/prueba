@@ -68,6 +68,7 @@ export class ProductListComponent {
       if (result.isConfirmed) {
         this.apiProductService.deleteProduct(id).subscribe({
           next: (response) => {
+            this.getProducts();
             Swal.fire(
               'Éxito!',
               'producto registrado correctamente.',

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -11,16 +11,24 @@ export class ApiProductService {
 
   constructor(private http: HttpClient) { }
 
-  createProduct(product: any, image: File): Observable<any> {
+  createProduct(product: any, image: File | null): Observable<any> {
     const formData = new FormData();
     formData.append('name', product.name);
     formData.append('description', product.description);
     formData.append('price', product.price);
-    formData.append('stock', product.price);
-    formData.append('image', image);
+    formData.append('stock', product.stock);
+    formData.append('brand', product.brand);
+    formData.append('category', product.category);
+    if (image) {
+      formData.append('image', image);
+
+    } else {
+      formData.append('image', new Blob(), 'defaul.jpg');
+    }
 
     return this.http.post(this.apiUrl, formData);
   }
+
 
   // Obtener todos los productos
   getProducts(): Observable<any[]> {
@@ -28,12 +36,28 @@ export class ApiProductService {
   }
 
   // Actualizar un usuario
-  updateProduct(product: any): Observable<any> {
-    return this.http.patch<any>(`${this.apiUrl}/${product.id}`, product);
+  updateProduct(product: any, image: File | null): Observable<any> {
+    const formData = new FormData();
+    formData.append('name', product.name);
+    formData.append('description', product.description);
+    formData.append('price', product.price);
+    formData.append('stock', product.stock);
+    formData.append('brand', product.brand);
+    formData.append('category', product.category);
+    if (image) {
+      formData.append('image', image);
+
+    } else {
+      formData.append('image', new Blob(), 'default.jpg');
+    }
+
+
+    return this.http.patch<any>(`${this.apiUrl}/${product.id}`, formData);
   }
 
+
   // Método para eliminar un usuario
-  deleteProduct(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  deleteProduct(id: number): Observable<HttpResponse<any>> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`,{ observe: 'response' });
   }
 }

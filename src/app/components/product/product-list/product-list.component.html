@@ -30,6 +30,8 @@
                 <th>Description</th>
                 <th>Price</th>
                 <th>Stock</th>
+                <th>Brand</th>
+                <th>Category</th>
                 <th>Img</th>
                 <th>Actions</th>
             </tr>
@@ -41,6 +43,8 @@
                 <td>{{ product.description }}</td>
                 <td>{{ product.price | currency }}</td>
                 <td>{{ product.stock }}</td>
+                <td>{{ product.brand }}</td>
+                <td>{{ product.category }}</td>
 
                 <td>
                     <img *ngIf="product.image" [src]="'data:image/jpeg;base64,' + product.image"
@@ -55,7 +59,7 @@
     </table>
 </div>
 
-<!-- Modal de edición de usuario -->
+<!-- Modal de edición de producto -->
 <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -66,28 +70,38 @@
             <div class="modal-body">
                 <form #editForm="ngForm" (ngSubmit)="saveProduct()">
                     <div class="mb-3">
-                        <label for="nickname" class="form-label">Nickname</label>
-                        <input type="text" class="form-control" id="nickname" [(ngModel)]="selectedProduct.name"
-                            name="nickname" required>
+                        <label for="name" class="form-label">name</label>
+                        <input type="text" class="form-control" id="name" [(ngModel)]="selectedProduct.name"
+                            name="name" required>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password"
-                            [(ngModel)]="selectedProduct.description" name="password" required>
+                        <label for="description" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="description"
+                            [(ngModel)]="selectedProduct.description" name="description" required>
                     </div>
                     <div class="mb-3">
-                        <label for="age" class="form-label">Edad</label>
-                        <input type="number" class="form-control" id="age" [(ngModel)]="selectedProduct.price"
-                            name="age" required>
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="price" [(ngModel)]="selectedProduct.price"
+                            name="price" required>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" [(ngModel)]="selectedProduct.stock"
-                            name="email" required>
+                        <label for="stock" class="form-label">Stock</label>
+                        <input type="text" class="form-control" id="stock" [(ngModel)]="selectedProduct.stock"
+                            name="stock" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="brand" class="form-label">brand</label>
+                        <input type="text" class="form-control" id="brand" [(ngModel)]="selectedProduct.brand"
+                            name="brand" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Category</label>
+                        <input type="text" class="form-control" id="category" [(ngModel)]="selectedProduct.category"
+                            name="category" required>
                     </div>
                     <div class="mb-3">
                         <div class="form-group">
-                            <label for="image">Imagen</label>
+                            <label for="image">image</label>
                             <input type="file" id="image" (change)="onImageSelected($event)" class="form-control">
                         </div>
                     </div>

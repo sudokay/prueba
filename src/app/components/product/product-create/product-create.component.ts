@@ -22,6 +22,8 @@ export class ProductCreateComponent {
     if (
       this.product.name &&
       this.product.description &&
+      this.product.brand &&
+      this.product.category &&
       this.product.price !== null &&
       this.product.price > 0 &&
       this.product.stock !== null &&
@@ -45,8 +47,38 @@ export class ProductCreateComponent {
             );
           }
         );
-      }else {
-        console.log('Formulario inválido. Revisa los campos.');
+      } else {
+
+        Swal.fire({
+          title: "Estas seguro?",
+          text: "No seleccionaste una imagen, deseas continuar?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.apiProductService.createProduct(this.product, this.selectedImage).subscribe(
+              () => {
+                Swal.fire(
+                  'Éxito!',
+                  'producto registrado correctamente.',
+                  'success'
+                );
+              },
+              (error) => {
+                console.error('Error al guardar los cambios del usuario', error);
+                Swal.fire(
+                  'Error!',
+                  'Hubo un problema al guardar los cambios.',
+                  'error'
+                );
+              }
+            )
+          }
+        });
+
       }
     }
   }

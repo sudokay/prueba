@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 export class ProductListComponent {
   product: any[] = [];
   selectedProduct: any = {};
-  selectedImage: string = '';
+  selectedImage: File | null = null;
 
   filteredProducts: any[] = []; // Usuarios filtrados
   nicknameFilter: string = ''; // Filtro por nickname
@@ -57,77 +57,100 @@ export class ProductListComponent {
 
   deleteProduct(id: number): void {
     Swal.fire({
-      title: '¿Estás seguro?',
-      text: 'No podrás revertir esta acción',
-      icon: 'warning',
+      title: "Estas seguro?",
+      text: "No seleccionaste una imagen, deseas continuar?",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Sí, eliminar'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        this.apiProductService.deleteProduct(id).subscribe(
-          () => {
-            this.getProducts(); // Recargar la lista después de eliminar
+        this.apiProductService.deleteProduct(id).subscribe({
+          next: (response) => {
             Swal.fire(
-              'Eliminado!',
-              'El usuario ha sido eliminado.',
+              'Éxito!',
+              'producto registrado correctamente.',
               'success'
             );
           },
-          (error) => {
-            console.error('Error al eliminar el usuario', error);
+          error: (error) => {
+            console.error('Error al guardar los cambios del usuario', error);
             Swal.fire(
               'Error!',
-              'Hubo un problema al eliminar el usuario.',
+              'Hubo un problema al guardar los cambios.',
               'error'
             );
           }
-        );
+        })
       }
     });
   }
 
   // Método para guardar los cambios del usuario
   saveProduct(): void {
-    // Para mostrar la imagen
-    this.apiProductService.updateProduct(this.selectedProduct).subscribe(
-      () => {
-        // Cerrar el modal después de guardar
-        const modalElement = document.getElementById('editUserModal');
-        const modal = new (window as any).bootstrap.Modal(modalElement);
-        modal.hide();
-        this.getProducts(); // Recargar la lista de usuarios
-        Swal.fire(
-          'Éxito!',
-          'Usuario editado correctamente.',
-          'success'
-        );
-      },
-      (error) => {
-        console.error('Error al guardar los cambios del usuario', error);
-        Swal.fire(
-          'Error!',
-          'Hubo un problema al guardar los cambios.',
-          'error'
-        );
-      }
-    );
-  }
+    if (this.selectedImage) {
+      // Para mostrar la imagen
+      this.apiProductService.updateProduct(this.selectedProduct, this.selectedImage).subscribe(
+        () => {
+          // Cerrar el modal después de guardar
+          const modalElement = document.getElementById('editUserModal');
+          const modal = new (window as any).bootstrap.Modal(modalElement);
+          modal.hide();
+          this.getProducts(); // Recargar la lista de usuarios
+          Swal.fire(
+            'Éxito!',
+            'Usuario editado correctamente.',
+            'success'
+          );
+        },
+        (error) => {
+          console.error('Error al guardar los cambios del usuario', error);
+          Swal.fire(
+            'Error!',
+            'Hubo un problema al guardar los cambios.',
+            'error'
+          );
+        }
+      );
+    } else {
+      Swal.fire({
+        title: "Estas seguro?",
+        text: "No seleccionaste una imagen, deseas continuar?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
 
-  onImageSelected(event: any): void {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      this.selectedImage = reader.result as string; // Guarda la imagen como Base64
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
+          this.apiProductService.updateProduct(this.product, this.selectedImage).subscribe(
+            () => {
+              Swal.fire(
+                'Éxito!',
+                'producto editado correctamente.',
+                'success'
+              );
+            },
+            (error) => {
+              console.error('Error al guardar los cambios del usuario', error);
+              Swal.fire(
+                'Error!',
+                'Hubo un problema al guardar los cambios.',
+                'error'
+              );
+            }
+          )
+        }
+      });
     }
   }
 
+  onImageSelected(event: any) {
+    this.selectedImage = event.target.files[0];
+  }
 
-  
+
+
 }

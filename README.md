@@ -2,15 +2,31 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
 
-## Development server
+## Requisitos minimos para la instalacion
+```bash
+->node.js
+->angular 19.2.0
+->editor de texto (visual studio, sublime text,...)
+```
 
-To start a local development server, run:
+## Paso a paso de la instalacion
+clonar repositorio (proyecto frontend)
+```bash
+git clone https://github.com/itsJefforDev/uniCosmet_front.git
+```
+instalar librerias de node.js
+```bash
+npm install
+```
+## Iniciar proyecto
+
+Para iniciar el proyecto localmente iniciar con el siguiente comando:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+una vez encendido el proyecto, ir a la siguiete url en un navegador `http://localhost:4200/`.
 
 ## Code scaffolding
 

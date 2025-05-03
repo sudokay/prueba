@@ -95,9 +95,9 @@ export class ProductListComponent {
       this.apiProductService.updateProduct(this.selectedProduct, this.selectedImage).subscribe(
         () => {
           // Cerrar el modal después de guardar
-          const modalElement = document.getElementById('editUserModal');
-          const modal = new (window as any).bootstrap.Modal(modalElement);
-          modal.hide();
+          // const modalElement = document.getElementById('editUserModal');
+          // const modal = new (window as any).bootstrap.Modal(modalElement);
+          // modal.hide();
           this.getProducts(); // Recargar la lista de usuarios
           Swal.fire(
             'Éxito!',
@@ -128,6 +128,7 @@ export class ProductListComponent {
 
           this.apiProductService.updateProduct(this.selectedProduct, this.selectedImage).subscribe(
             () => {
+              this.getProducts();
               Swal.fire(
                 'Éxito!',
                 'producto editado correctamente.',

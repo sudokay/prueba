@@ -126,7 +126,7 @@ export class ProductListComponent {
       }).then((result) => {
         if (result.isConfirmed) {
 
-          this.apiProductService.updateProduct(this.product, this.selectedImage).subscribe(
+          this.apiProductService.updateProduct(this.selectedProduct, this.selectedImage).subscribe(
             () => {
               Swal.fire(
                 'Éxito!',

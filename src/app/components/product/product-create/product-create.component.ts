@@ -56,7 +56,8 @@ export class ProductCreateComponent {
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!"
+          confirmButtonText: "Si, continuar",
+          cancelButtonText: "No, cancelar"
         }).then((result) => {
           if (result.isConfirmed) {
             this.apiProductService.createProduct(this.product, this.selectedImage).subscribe(

@@ -2,11 +2,11 @@
   <h2>Crear usuario</h2>
   <form class="row g-3" (ngSubmit)="saveUser()">
     <div class="col-md-4">
-      <label for="name" class="form-label" >Name</label>
+      <label for="name" class="form-label" >Nombre</label>
       <input type="text" class="form-control" id="name" value="Mark" [(ngModel)]="user.name" required name="name">
     </div>
     <div class="col-md-2">
-      <label for="age" class="form-label">Age</label>
+      <label for="age" class="form-label">Edad</label>
       <input type="number" class="form-control" id="age" value="Otto" [(ngModel)]="user.age" required name="age">
     </div>
     <div class="col-md-6">
@@ -21,7 +21,7 @@
       <input type="text" class="form-control" id="nickname" [(ngModel)]="user.nickname" required name="nickname">
     </div>
     <div class="col-md-4">
-      <label for="password" class="form-label">password</label>
+      <label for="password" class="form-label">Contraseña</label>
       <input type="password" class="form-control" id="password"[(ngModel)]="user.password" required name="password">
     </div>
     <div class="col-md-2">
@@ -33,7 +33,7 @@
       </select>
     </div>
     <div class="col-12">
-      <button class="btn btn-primary" type="submit">Submit form</button>
+      <button class="btn btn-primary" type="submit">Enviar Formato</button>
     </div>
   </form>
 

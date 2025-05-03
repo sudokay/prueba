@@ -12,7 +12,12 @@
             </div>
             <div class="col-6">
                 <!-- Filtro por name -->
-                <input type="text" class="form-control" placeholder="name" [(ngModel)]="nameFilter"
+                <input type="text" class="form-control" placeholder="nombre" [(ngModel)]="nameFilter"
+                (input)="applyFilters()">
+            </div>
+            <div class="col-6 mt-4">
+                <!-- Filtro por categoria-->
+                <input type="text" class="form-control" placeholder="Categoria" [(ngModel)]="categoryFilter"
                 (input)="applyFilters()">
             </div>
         </div>
@@ -21,12 +26,12 @@
         <thead class="thead-light">
             <tr>
                 <th>ID</th>
-                <th>name</th>
-                <th>Description</th>
-                <th>Price</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
                 <th>Stock</th>
-                <th>Brand</th>
-                <th>Category</th>
+                <th>Marca</th>
+                <th>Categoria</th>
                 <th>Img</th>
                 <th>Actions</th>
             </tr>

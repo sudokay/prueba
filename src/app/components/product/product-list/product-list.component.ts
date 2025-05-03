@@ -1,20 +1,22 @@
 import { Component } from '@angular/core';
 import { ApiProductService } from '../../../services/product-service/api-product.service';
 import Swal from 'sweetalert2';
-
+import { OnInit } from '@angular/core';
 @Component({
   selector: 'app-product-list',
   standalone: false,
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit {
   product: any[] = [];
   selectedProduct: any = {};
   selectedImage: File | null = null;
+  categoryFilter: string = ''; // Filtro por rol
+  
 
   filteredProducts: any[] = []; // Usuarios filtrados
-  productIdFilter: number = 0; // Filtro por nickname
+  productIdFilter: string = ''; // Filtro por nickname
   nameFilter: string = ''; // Filtro por rol
   base64Image: string | null = null;
 
@@ -42,7 +44,8 @@ export class ProductListComponent {
     this.filteredProducts = this.product.filter(product => {
       const matchesProductId = product.productId.toString().includes(this.productIdFilter.toString());
       const matchesName = product.name.toString().includes(this.nameFilter.toString());
-      return matchesProductId && matchesName;
+      const matchesCategory = product.categoryFilter.toString().includes(this.categoryFilter.toString());
+      return matchesProductId && matchesName && matchesCategory;
     });
   }
 
@@ -63,7 +66,8 @@ export class ProductListComponent {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonText: "Si, continuar",
+      cancelButtonText: "No, cancelar"
     }).then((result) => {
       if (result.isConfirmed) {
         this.apiProductService.deleteProduct(id).subscribe({
@@ -122,7 +126,8 @@ export class ProductListComponent {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
+        confirmButtonText: "Si, continuar",
+        cancelButtonText: "No, cancelar"
       }).then((result) => {
         if (result.isConfirmed) {
 

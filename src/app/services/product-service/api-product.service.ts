@@ -52,7 +52,7 @@ export class ApiProductService {
     }
 
 
-    return this.http.patch<any>(`${this.apiUrl}/${product.id}`, formData);
+    return this.http.patch<any>(`${this.apiUrl}/${product.productId}`, formData);
   }
 
 

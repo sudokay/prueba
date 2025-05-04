@@ -1,22 +1,21 @@
 import { Component } from '@angular/core';
 import { ApiProductService } from '../../../services/product-service/api-product.service';
 import Swal from 'sweetalert2';
-import { OnInit } from '@angular/core';
 @Component({
   selector: 'app-product-list',
   standalone: false,
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent {
   product: any[] = [];
   selectedProduct: any = {};
   selectedImage: File | null = null;
-  categoryFilter: string = ''; // Filtro por rol
   
-
+  
+  categoryFilter: string = ''; // Filtro por rol
   filteredProducts: any[] = []; // Usuarios filtrados
-  productIdFilter: string = ''; // Filtro por nickname
+  productIdFilter: string = ""; // Filtro por nickname
   nameFilter: string = ''; // Filtro por rol
   base64Image: string | null = null;
 
@@ -42,9 +41,9 @@ export class ProductListComponent implements OnInit {
   // Aplicar los filtros
   applyFilters(): void {
     this.filteredProducts = this.product.filter(product => {
-      const matchesProductId = product.productId.toString().includes(this.productIdFilter.toString());
-      const matchesName = product.name.toString().includes(this.nameFilter.toString());
-      const matchesCategory = product.categoryFilter.toString().includes(this.categoryFilter.toString());
+      const matchesProductId = (product.productId ?? '').toString().includes((this.productIdFilter??'').toString());
+      const matchesName = (product.name?? '').toString().toLowerCase().includes((this.nameFilter??'').toLowerCase());
+      const matchesCategory = (product.category??'').toLowerCase().includes((this.categoryFilter??'').toLowerCase());
       return matchesProductId && matchesName && matchesCategory;
     });
   }

@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/uni-cosmet-front",
+            "outputPath": "dist/uni-cosmet-front/browser",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [

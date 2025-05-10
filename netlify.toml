@@ -1,3 +1,6 @@
 [build]
   command = "ng build --configuration production"
   publish = "dist/uni-cosmet-front/browser"
+
+[[plugins]]
+  package = "@netlify/plugin-angular"  # Este reemplaza al runtime automático

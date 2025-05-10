@@ -6,8 +6,6 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-     "build:ssr": "ng build --configuration production && ng run uniCosmet_front:server:production",
-     "serve:ssr:uniCosmet_front": "node dist/uni-cosmet-front/server/server.mjs",
     "test": "ng test"
   
   },
